@@ -185,7 +185,7 @@ class ColumnResizePluginView implements PluginView {
       this.view.state.tr.setMeta(columnResizePluginKey, newState),
     );
 
-    this.editor.sideMenu.freezeMenu();
+    (this.editor.getExtension("sideMenu") as any)?.freezeMenu();
     this.view.dom.classList.add("is-resizing-columns");
   };
 
@@ -263,7 +263,7 @@ class ColumnResizePluginView implements PluginView {
       this.view.state.tr.setMeta(columnResizePluginKey, newState),
     );
 
-    this.editor.sideMenu.unfreezeMenu();
+    (this.editor.getExtension("sideMenu") as any)?.unfreezeMenu();
     this.view.dom.classList.remove("is-resizing-columns");
   };
 
