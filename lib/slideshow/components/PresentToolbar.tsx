@@ -13,6 +13,8 @@ export interface PresentToolbarProps {
   selectedTheme: string;
   onThemeChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onPresent: () => void;
+  /** Callback when Ask AI button is clicked */
+  onAskAI?: () => void;
   className?: string;
   /** Height of the button in pixels (default: 28) */
   height?: number;
@@ -26,6 +28,7 @@ export const PresentToolbar: React.FC<PresentToolbarProps> = ({
   selectedTheme,
   onThemeChange,
   onPresent,
+  onAskAI,
   className = '',
   height = 28,
   iconSize = 14,
@@ -152,7 +155,20 @@ export const PresentToolbar: React.FC<PresentToolbarProps> = ({
 
   return (
     <>
-      <div className={`bn-present-toolbar relative inline-flex ${className}`}>
+      <div className={`bn-present-toolbar relative inline-flex items-center gap-2 ${className}`}>
+        {/* Ask AI Button */}
+        {onAskAI && (
+          <button
+            type="button"
+            className="inline-flex items-center gap-1.5 px-2.5 border border-gray-200 rounded-md bg-white text-gray-600 hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200 transition-colors shadow-sm hover:shadow"
+            style={{ height: `${height}px`, fontSize: `${fontSize}px` }}
+            onClick={onAskAI}
+            title="Ask AI"
+          >
+            <span>Ask AI</span>
+          </button>
+        )}
+
         {/* Split Button Container */}
         <div
           className="inline-flex items-stretch border border-gray-200 rounded-md bg-white overflow-hidden shadow-sm hover:shadow transition-shadow"
